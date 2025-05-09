@@ -1,6 +1,8 @@
 # Data Engineering Home Project Setup Guide
 
-This guide outlines how to set up a complete, hands-on data engineering environment using virtual machines. It includes instructions for installing and configuring tools like PostgreSQL, Apache Kafka, Apache Spark, Airflow, and Superset. It also includes solutions to various troubleshooting issues encountered during setup.
+This guide outlines how to set up a complete, hands-on data engineering environment using virtual machines. 
+It includes instructions for installing and configuring tools like PostgreSQL, Apache Kafka, Apache Spark, Airflow, and Superset. 
+It also includes solutions to various troubleshooting issues encountered during setup.
 
 ## Table of Contents
 - [Overview](#overview)
@@ -16,17 +18,34 @@ This guide outlines how to set up a complete, hands-on data engineering environm
 ---
 
 ## Overview
-This project emulates a simplified data pipeline on a local machine using Hyper-V with four virtual machines (VMs), each responsible for a different function:
+This project emulates a simplified data pipeline project.
+Using a Windows 10 client and Hyper-V with four virtual machines (VMs) running AlmaLinux 9, each responsible for a different function:
 
 - **Database VM**: PostgreSQL and MinIO
 - **Processing VM**: Apache Spark and Airflow
 - **Streaming VM**: Apache Kafka
 - **Visualization VM**: Superset and Metabase
 
+### Why not Windows for the VMs?
+
+I chose Linux  for the following reasons: 
+1. Linux could have better resource efficiency in a VM (even on a windows host).
+2. All the tools (Posgresql, Spark, Airflow, Superset) will probably run better on a Linux OS.
+3. I wanted to delve into Linux CLI automation and possibly set up some cron jobs.
+4. I didn't want to have any software licensing concerns.
+5. I wanted to mirror some real-world data engineering pipelines. As best I could.
+
+### Why use these tools?
+
+1. PostgreSQL & MinIO – Used for structured & object storage in production.
+2. Apache Spark & Airflow – Common in large-scale ETL & data processing.
+3. Apache Superset – A lightweight, open-source alternative to Tableau.
+4. Linux-based Infrastructure – Standard for cloud & enterprise environments. 
+
 ## Architecture
 ```
 +--------------+     +-------------+     +---------------+     +----------------+
-| Visualization|<--->| Processing  |<--->|   Streaming   |<--->|    Database     |
+| Visualization|<--->| Processing  |<--->|   Streaming   |<--->|    Database    |
 |    (Superset)|     |  (Spark)    |     |   (Kafka)     |     |  (PostgreSQL)  |
 +--------------+     +-------------+     +---------------+     +----------------+
 ```
