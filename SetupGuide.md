@@ -58,7 +58,9 @@ I chose Linux  for the following reasons:
    - VM4: `visualization` (2 vCPU, 4 GB RAM)
 
 2. Update hostnames on each VM accordingly:
-```bash
+```
+bash
+
 sudo hostnamectl set-hostname database  # Repeat for each VM
 ```
 
@@ -80,6 +82,7 @@ sudo hostnamectl set-hostname database  # Repeat for each VM
       1. Edit the network config on each VM: 
       ```
       bash
+
       nmcli con show
       ```
       2. Look for an interface name like eno1
