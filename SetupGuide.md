@@ -79,7 +79,7 @@ sudo hostnamectl set-hostname database  # Repeat for each VM
       4. Select the name of the virtual switch created
 
    c. Assign static IPs to each VM
-      1. Edit the network config on each VM: 
+      1. Edit the network config on each VM. I chose an IP range of 10.0.0.100 to 10.0.0.104
       ```
       bash
 
@@ -112,10 +112,43 @@ sudo hostnamectl set-hostname database  # Repeat for each VM
 ```
 bash
 
-sudo vi /etc/resolv.conf
+sudo nano /etc/resolv.conf
 # Add:
 nameserver 8.8.8.8
 ```
+
+5. Check Firewall and SELinux Settings
+By default AlmaLinux may have firewalld and selinux enabled, which could block communication.
+   a. Check if firewalld is running
+   ```
+   bash
+
+   sudo systemctl status firewalld
+   ```
+
+   b. If you need to allow traffic, you can either disable it or allow specific services:
+   ```
+   bash
+
+   sudo firewall-cmd --permanent --add-service=ssh
+   sudo firewall-cmd --reload
+   ```
+
+   c. Check SELinux status:
+   ```
+   bash
+
+   sestatus
+   ```
+   If it's enforcing and causing issues, you can temporarily set to permissive:
+   ```
+   bash
+
+   sudo setenforce 0
+   ```
+   Permanent changes require editing /etc/selinux/config)
+
+*At this point, I had the VMs created, network setup, and the VMs talking to each other.
 
 ## PostgreSQL Setup
 1. Install PostgreSQL 16 on the `database` VM.
