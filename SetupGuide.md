@@ -51,7 +51,7 @@ I chose Linux  for the following reasons:
 ```
 
 ## VM Setup
-1. Create 4 VMs in Hyper-V:
+1. Create 4 VMs in Hyper-V all with AlmaLinux as the OSß:
    - VM1: `database` (2 vCPU, 4 GB RAM)
    - VM2: `processing` (4 vCPU, 8 GB RAM)
    - VM3: `streaming` (2 vCPU, 4 GB RAM)
@@ -63,6 +63,44 @@ sudo hostnamectl set-hostname database  # Repeat for each VM
 ```
 
 3. Ensure all VMs are on the same internal network and can `ping` each other by hostname.
+   a. Create an internal virtual swich
+      1. In Hyper-V Manager
+      2. Click Virtual Switch Manager
+      3. Select internal and click create virtual switch
+      4. Name it something compelling
+      5. Click Apply->Ok
+
+   b. Assign the virtual switch to each vm
+      1. In each VM
+      2. Go to settings
+      3. Network Adapter
+      4. Select the name of the virtual switch created
+
+   c. Assign static IPs to each VM
+      1. Edit the network config on each VM: 
+      ```
+      bash
+      nmcli con show
+      ```
+      2. Look for an interface name like eno1
+      3. Set a static IP address(replace eth0 with your interface name):
+      ```
+      bash
+      sudo nmcli con mod eth0 ipv4.addresses 10.0.0.100/24
+      sudo ncmli con mod eth0 ipv4.gateway 10.0.0.1
+      sudo nmcli con mod eth0 ipv4.dns 8.8.8.8
+      sudo nmcli con mod eth0 ipv4.method manual
+      ```
+      4. Apply changes
+      ```
+      bash
+      sudo nmcli con up eth0
+      ```
+      5. Verify the new IP
+      ```
+      bash
+      ip a
+      ```
 
 4. Fix DNS resolution:
 ```bash
