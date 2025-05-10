@@ -86,6 +86,7 @@ sudo hostnamectl set-hostname database  # Repeat for each VM
       3. Set a static IP address(replace eth0 with your interface name):
       ```
       bash
+
       sudo nmcli con mod eth0 ipv4.addresses 10.0.0.100/24
       sudo ncmli con mod eth0 ipv4.gateway 10.0.0.1
       sudo nmcli con mod eth0 ipv4.dns 8.8.8.8
@@ -94,16 +95,20 @@ sudo hostnamectl set-hostname database  # Repeat for each VM
       4. Apply changes
       ```
       bash
+
       sudo nmcli con up eth0
       ```
       5. Verify the new IP
       ```
       bash
+
       ip a
       ```
 
 4. Fix DNS resolution:
-```bash
+```
+bash
+
 sudo vi /etc/resolv.conf
 # Add:
 nameserver 8.8.8.8
