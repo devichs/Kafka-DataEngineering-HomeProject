@@ -148,7 +148,7 @@ By default AlmaLinux may have firewalld and selinux enabled, which could block c
    ```
    Permanent changes require editing /etc/selinux/config)
 
-*At this point, I had the VMs created, network setup, and the VMs talking to each other.
+*At this point, I had the VMs created, network setup, and the VMs talking to each other.*
 
 ## PostgreSQL Setup
 1. Install PostgreSQL 16 on the `database` VM.
