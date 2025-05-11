@@ -223,12 +223,3 @@ nc -zv streaming 9092
 - **Connection refused from Processing to Streaming**: Open port 9092 and confirm hostname resolves.
 
 ---
-
-## Next Steps
-- Set up Spark and Airflow on the Processing VM.
-- Connect Airflow DAGs to read from Kafka and write to PostgreSQL.
-- Visualize the results using Superset on the Visualization VM.
-
----
-
-This guide forms a foundational hands-on data engineering environment that emulates real-world workflows on a local machine using open-source tools.
