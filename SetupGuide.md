@@ -28,7 +28,7 @@ Using a Windows 10 client and Hyper-V with four virtual machines (VMs) running A
 
 ### Why not Windows for the VMs?
 
-I chose Linux  for the following reasons: 
+I chose Linux for the following reasons: 
 1. Linux could have better resource efficiency in a VM (even on a windows host).
 2. All the tools (Posgresql, Spark, Airflow, Superset) will probably run better on a Linux OS.
 3. I wanted to delve into Linux CLI automation and possibly set up some cron jobs.
